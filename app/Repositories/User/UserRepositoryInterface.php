@@ -1,6 +1,8 @@
 <?php
 
-interface UserRepository{
+namespace App\Repositories\User;
+
+interface UserRepositoryInterface{
 
     public function all();
     public function get();

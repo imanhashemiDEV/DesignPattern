@@ -2,18 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\User\EloquentUserRepository;
+use App\Repositories\User\UserRepositoryInterface;
+use App\Services\UserService\UserService;
 use Illuminate\Http\Request;
-use UserRepository as NewUser;
 
 
 class UserController extends Controller
 {
 
-    public function store()
+    private EloquentUserRepository $userRepository;
+
+    public function __construct(EloquentUserRepository $userRepository)
     {
-        resolve(NewUser::class)->create([
-            'name'=>'iman',
-            'password'=>'iudfgwerovwo8vg'
-        ]);
+        $this->userRepository = $userRepository;
+    }
+
+    public function store(Request $request)
+    {
+       $this->userRepository->create([
+           'name'=>$request->name,
+           'email'=>$request->email,
+           'password'=>bcrypt($request->password)
+       ]);
+
+       return redirect()->back();
+    }
+
+    public function create(Request $request, UserService $userService)
+    {
+        $userService->createNewUser($request->name,$request->email,$request->password);
     }
 }

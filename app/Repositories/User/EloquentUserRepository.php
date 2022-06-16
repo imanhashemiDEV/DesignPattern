@@ -1,9 +1,11 @@
 <?php
 
+namespace App\Repositories\User;
 
 use App\Models\User;
 
-class EloquentUserRepository implements UserRepository{
+
+class EloquentUserRepository implements UserRepositoryInterface{
 
 
     public function all()
