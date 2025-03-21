@@ -26,4 +26,4 @@ Route::get('/register_user', [\App\Http\Controllers\Admin\AuthController::class,
 require __DIR__.'/auth.php';
 
 
-Route::post('/create_order', [\App\Http\Controllers\Front\OrderController::class,'createOrder'])->name('order.create');
+Route::get('/create_order', [\App\Http\Controllers\Front\OrderController::class,'createOrder'])->name('order.create');

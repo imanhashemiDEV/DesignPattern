@@ -13,10 +13,11 @@ class OrderController extends Controller
 {
     public function createOrder(Request $request)
     {
-        $gateway = $request->input('gateway');
-        PaymentProcessingFactory::checkPayment($gateway)->pay();
-
-        Order::query()->create([
+        //$gateway = $request->input('gateway');
+        $gateway = 'zarinpal';
+        $payment = PaymentProcessingFactory::processingPayment($gateway);
+        $payment->pay();
+        $order = Order::query()->create([
             'gateway'=>$gateway,
             'price'=> $request->get('price'),
         ]);
