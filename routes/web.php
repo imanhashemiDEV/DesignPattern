@@ -27,3 +27,6 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/create_order', [\App\Http\Controllers\Front\OrderController::class,'createOrder'])->name('order.create');
+
+
+Route::get('/shipping', [\App\Http\Controllers\Front\ShippingController::class,'shipping'])->name('shipping.create');
