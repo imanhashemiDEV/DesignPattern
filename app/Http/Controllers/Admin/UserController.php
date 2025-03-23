@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DesignePatterns\Facade\FacadeAuth;
+use App\DesignePatterns\Facade\FacadeMail;
+use App\DesignePatterns\Facade\FacadeSignUp;
+use App\DesignePatterns\Facade\FacadeUser;
+use App\DesignePatterns\Facade\FacadeValidate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
@@ -31,8 +36,29 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request): \Illuminate\Http\RedirectResponse
     {
-        User::createUser($request);
-        return redirect()->route('home');
+
+//        User::createUser($request);
+//        return redirect()->route('home');
+
+//        // Facade Design Pattern
+//        // validate user
+//         $validate = new FacadeValidate();
+//        // create user
+//        $user = new FacadeUser();
+//        // auth user
+//         $auth = new FacadeAuth();
+//        // send email
+//        $mail = new FacadeMail();
+//
+//        if($validate->isValid($request)){
+//            $user->create($request);
+//            $auth->login($request->email, $request->password);
+//            $mail->to($request->email,'welcome','message');
+//        }
+
+        $facadeSignup = new FacadeSignUp();
+        $facadeSignup->signup($request);
+
     }
 
     /**
