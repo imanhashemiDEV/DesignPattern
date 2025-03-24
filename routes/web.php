@@ -30,3 +30,6 @@ Route::get('/create_order', [\App\Http\Controllers\Front\OrderController::class,
 
 
 Route::get('/shipping', [\App\Http\Controllers\Front\ShippingController::class,'shipping'])->name('shipping.create');
+
+
+Route::get('/message', [\App\Http\Controllers\Admin\MessageController::class,'sendMessage'])->name('message.send');
